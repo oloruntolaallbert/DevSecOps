@@ -4,7 +4,7 @@ provider "aws" {
 
 variable "ingressrule" {
     type = list(number)
-    default = [ 80,443,53,8080,110 ]
+    default = [ 80,443]
 }
 
 variable "egressrule" {
