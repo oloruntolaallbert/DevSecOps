@@ -1,0 +1,56 @@
+provider "aws" {
+    region = "eu-west-2"
+}
+
+variable "ingressrule" {
+    type = list(number)
+    default = [ 80,443,53,8080,110 ]
+}
+
+variable "egressrule" {
+    type = list(number)
+    default = [ 80,443,53,8080,110 ]
+}
+
+
+
+resource "aws_instance" "ec2" {
+  ami           = "ami-086b3de06dafe36c5" 
+  instance_type = "t2.micro"
+  security_groups = [aws_security_group.SecurityGroupwebtraffic.name]
+  }
+
+resource "aws_security_group" "SecurityGroupwebtraffic" {
+   name = "Allowallhttps"
+
+   dynamic "ingress"  {
+    iterator = port
+    for_each = var.ingressrule
+     content {
+     cidr_blocks = [ "0.0.0.0/0" ]
+     description = "allowallhttps"
+     from_port = port.value
+     ipv6_cidr_blocks = [ "::/0" ]
+     prefix_list_ids = [ "pl-082b2916fa6d7b4b7" ]
+     protocol = "tcp"
+     self = false
+     to_port = port.value
+   }
+   } 
+
+   dynamic "egress"  {
+    iterator = port
+    for_each = var.egressrule
+    content {
+     cidr_blocks = [ "0.0.0.0/0" ]
+     description = "allowallhttps"
+     from_port = port.value
+     ipv6_cidr_blocks = [ "::/0" ]
+     prefix_list_ids = [ "pl-082b2916fa6d7b4b7" ]
+     protocol = "tcp"
+     self = false
+     to_port = port.value
+    }
+   } 
+}
+
