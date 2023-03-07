@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "ec2name" {
-    source = "./ec2"
+    source = "./ec2" //the soucre was local and you will find it below
     ec2name = "name from module"
   
 }
