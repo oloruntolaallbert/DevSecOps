@@ -1,0 +1,34 @@
+provider "aws" {
+    region = "eu-west-2"
+}
+resource "aws_instance" "ec2" {
+  ami           = "ami-086b3de06dafe36c5" 
+  instance_type = "t2.micro"
+  security_groups = [aws_security_group.SecurityGroupwebtraffic.name]
+  }
+
+resource "aws_security_group" "SecurityGroupwebtraffic" {
+   name = "Allowallhttps"
+   ingress  {
+     cidr_blocks = [ "0.0.0.0/0" ]
+     description = "allowallhttps"
+     from_port = 443
+     ipv6_cidr_blocks = [ "::/0" ]
+     prefix_list_ids = [ "pl-082b2916fa6d7b4b7" ]
+     protocol = "tcp"
+     self = false
+     to_port = 443
+   } 
+
+   egress  {
+     cidr_blocks = [ "0.0.0.0/0" ]
+     description = "allowallhttps"
+     from_port = 443
+     ipv6_cidr_blocks = [ "::/0" ]
+     prefix_list_ids = [ "pl-082b2916fa6d7b4b7" ]
+     protocol = "tcp"
+     self = false
+     to_port = 443
+   } 
+}
+
