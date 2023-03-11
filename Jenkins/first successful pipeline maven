@@ -28,7 +28,7 @@ pipeline {
     }
 }
 
-//ran into a bit of difficulty and attached is a screenshot of my progress
+//ran into a bit of difficulty and attached is a screenshot of my progress "p1Maven.png"
 
 // if you run into issue when running build ( Rule 0: org.apache.maven.plugins.enforcer.RequireMavenVersion failed with message:Detected Maven Version: 3.6.3 is not in the allowed range [3.8.6,).)
 // 1) fork devsecops-jenkins into your own Github repo
