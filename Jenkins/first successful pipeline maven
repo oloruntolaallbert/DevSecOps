@@ -1,0 +1,36 @@
+pipeline {
+    agent any 
+    stages {
+        stage("Clean Up"){
+            steps {
+                deleteDir()
+            }
+        }
+        stage("Clone Repo"){
+            steps {
+                sh "git clone https://github.com/oloruntolaallbert/devsecops-jenkins-.git"
+            }
+        }
+        stage("Build"){
+            steps {
+                   dir("devsecops-jenkins-"){
+                    sh "mvn clean install"
+                   } 
+            }
+        }
+        stage("Test"){
+            steps {
+                dir("devsecops-jenkins-."){
+                    sh "mvn test"
+                   } 
+            }
+        }
+    }
+}
+
+//ran into a bit of difficulty and attached is a screenshot of my progress
+
+// if you run into issue when running build ( Rule 0: org.apache.maven.plugins.enforcer.RequireMavenVersion failed with message:Detected Maven Version: 3.6.3 is not in the allowed range [3.8.6,).)
+// 1) fork devsecops-jenkins into your own Github repo
+// 2) edit the POM.XML and set the 3.8.8 to 3.6.3 for the Maven Version in your forked repo
+//3) Ensure you clone your git repo in thr "clone Repo" stage also don't forget to change the dir if it's cloned to a specific folder/directory
