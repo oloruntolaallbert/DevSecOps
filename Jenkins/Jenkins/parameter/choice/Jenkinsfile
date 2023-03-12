@@ -1,0 +1,20 @@
+pipeline {
+    agent any 
+
+    parameters {
+            choice(choice:["Test","QA", "SOC team", "POC", "Dev", "Prod"] description: "what depolyment is this?", name: "deployEnv")
+    }
+    stages {
+        stage ("Demo"){
+            steps {
+                    echo "choice is set to: ${params.deployEnv}"   
+            }
+        }
+            stage ("Team-timileyinao"){
+            steps {
+                    echo "string is set to: Job successful"   
+            } 
+                     
+        }
+    }
+}
