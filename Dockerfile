@@ -1,3 +1,3 @@
-FROM nginx
+FROM alpine:latest 
 
-CMD echo "Hello timileyin"
+RUN apk add python3
