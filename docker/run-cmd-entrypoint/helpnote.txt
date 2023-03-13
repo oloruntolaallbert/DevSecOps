@@ -1,0 +1,7 @@
+idf you get this error 
+#5 0.778 ERROR: unable to select packages:
+#5 0.816   python (no such package):
+#5 0.816     required by: world[python]
+
+option 1 : RUN apk add python3 
+option 2: use older version of Alpine instead of defaulting to latest.. FFROM alpine:3.11
