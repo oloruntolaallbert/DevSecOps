@@ -1,0 +1,3 @@
+CentOS image since hJanuary 2022 this linux didtribution is deprecated and yum -y install httpd no longer worker
+
+instead us rockylinux
