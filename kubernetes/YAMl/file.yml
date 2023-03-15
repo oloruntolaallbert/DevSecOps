@@ -1,0 +1,19 @@
+
+ fruits: 
+  - banana
+  - orange
+  - grapes
+  - watermelon
+    
+ total: 5
+
+ veg:  
+  Green:
+  - broccoli
+  - cabbage
+
+  Red:
+  - tomato
+  - peppers
+
+  total: 4

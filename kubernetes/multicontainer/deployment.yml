@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  webdeploy
+  labels:
+    name:  webdeploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      server: web
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        server:  nweb
+    spec:
+      containers:
+      - name: webserver
+        image: hpptd:latest
+        resources:
+          limits:
+            memory: "500Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80
