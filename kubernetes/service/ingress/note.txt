@@ -1,0 +1,19 @@
+I had a bit of difficulty to get to the browser 
+
+here are some tips 
+
+My minikube is using Docker Engine.  The thing I had to do was add 127.0.0.1 mysite.local to the /etc/hosts file.
+  Do not use the IP given by get ingress. 
+Don't know if it is due to a new version of Minikube, but in order for the browser to work, I had to run minikube tunnel and once that was running I was able to get it in the browser
+change the ingress.yaml file and replace the host with demo.localdev.me
+
+or 
+Run the following command
+kubectl port-forward service/websrvc 8080:8080
+the solution i did was to run this cmd after creating the ingress : 
+or
+kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 80:80
+
+This cmd allow to listen on port 8080 locally and forward the request to port 80 in the pod.
+
+(I found this cmd here : https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)

@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webingress
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  labels:
+    name: webingress
+spec:
+  rules:
+  - host: demo.localdev.me
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: websrvc
+            port: 
+              number: 8080
