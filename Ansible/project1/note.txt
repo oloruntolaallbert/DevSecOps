@@ -1,0 +1,4 @@
+update all packages on the server 
+install Apache (httpd)
+create HHTML page using this coommand :
+echo "Hello From The First Project" > /var/www/html/index.html
